@@ -1,0 +1,27 @@
+--Creates a white line that will glow your selected color. 
+--For the best results, avoid extremly large or small brush sizes.
+
+--Made by wheresmystylus.tumblr.com Feel free to use and modify as you want. No attribution needed--
+
+function main(x, y, p) 
+
+  --This sets the parameters to everything that it should be.
+  local  r,g,b,a = bs_fore()
+  local o = bs_opaque()*127
+ 
+  local w = bs_width()
+  local f = bs_width()
+ 
+  --This is the white center
+  bs_ellipse (x,y,w/2,w/2,1, 255, 255,255,o)
+  
+  --This produces the glowing effect
+  for i = 1, f ,1
+  do
+    local j = f-i
+	
+	bs_ellipse( x,y,w/i,w/i, 0, r,g,b, o/j)
+  end
+  
+  return   1
+end

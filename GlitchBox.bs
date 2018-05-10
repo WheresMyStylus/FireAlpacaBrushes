@@ -1,0 +1,36 @@
+--Creates randomized boxes, creating a glitch effect--
+--For best results, turn antialiasing off.--
+
+--Made by wheresmystylus.tumblr.com Feel free to use and modify as you want. No attribution needed--
+
+firstDraw = true
+i =0
+function  param1()
+  return   "Block Spacing" , 1 , 50 , 1 
+end
+
+
+function main(x,y,p)
+
+  local s = bs_param1()
+  
+  if not firstDraw then
+    i = i+1
+	if i<s  then
+	  return 0
+	end
+  end
+  
+  local r,g,b,a = bs_fore()
+  local o = bs_opaque()*255
+  local f = bs_width_max()/2
+
+  local w = bs_width()
+  
+  bs_rect( x+ math.random(f*-1,f), y+ math.random(f*-1,f), w, w, r,g,b,o )
+	
+  i = 0
+  firstDraw = false
+  return 1
+
+end

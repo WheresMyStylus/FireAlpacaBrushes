@@ -1,0 +1,46 @@
+--Creates a cluster of pixels in a 'spraying' effect--
+--This brush is designed to emulate brushes from a certain low-end art program.--
+--For best results, turn antialiasing off.--
+
+--Made by wheresmystylus.tumblr.com Feel free to use and modify as you want. No attribution needed--
+
+
+function  param1()
+  return   "Density" , 0 , 100 , 50 
+end
+
+function main(x, y, p) 
+
+  --This sets the parameters to everything that it should be.
+  local  r,g,b,a = bs_fore()
+  local o = bs_opaque()*255
+  local d = bs_param1()+1
+  local w = bs_width()
+  
+  --Draw the stroke if and only if a random number is smaller than the density.
+  local i = math.random(0,100)
+
+  
+  if i <= d then
+    local w,h = genxy(w/2)
+    bs_pixel_set(x+w,y+h,r,g,b,o)
+	local w,h = genxy(w/2)
+    bs_pixel_set(x+w,y+h,r,g,b,o)
+	return 1
+  end
+  
+  return 0
+end
+
+function genxy(r)
+ local w= math.random((r*-1),r)
+ local h= math.random((r*-1),r)
+ 
+ --This will redo everything if the coordinates don't fit in a circle
+ --This function achives this by calling itself.
+ if (w^2+h^2) > (r^2) then
+    w,h = genxy(r)
+ end
+ 
+ return w,h
+end
