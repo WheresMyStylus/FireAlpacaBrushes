@@ -1,0 +1,20 @@
+function  param1()
+  return   "pressure" , 0 , 10 , 10 
+end
+
+function main(x, y, p) 
+
+  --This sets the parameters to everything that it should be.
+  local  r,g,b,a = bs_fore()
+  local o = bs_opaque()*255
+  
+  local s = bs_param1()/10.0
+
+  local w1 = bs_width()*s
+  local w2 = bs_width_max()*(1.0-s)
+  local w = (w1+w2)/2.0
+  
+  --This actually draws the stroke.
+  bs_ellipse( x,y,w,w,1,r,g,b, o )
+  return   1 
+end
