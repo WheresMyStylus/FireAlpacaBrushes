@@ -1,4 +1,4 @@
---Creates randomized boxes, creating a glitch effect--
+--Creates a dashed line, using the two params to determine the dash and gap length.--
 
 i = 0
 
