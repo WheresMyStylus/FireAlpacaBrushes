@@ -1,0 +1,36 @@
+--Draw a coil around the cursor while pressed.--
+thot= 0.0
+
+function  param1()
+  return   "DrawCore" , 0 , 1 , 0
+end
+
+function param2()
+  return   "Radius" , 2 , 7 , 5 
+end
+
+function main(x, y, p)
+
+  --Defines the variables I will need for drawing--
+  local inner = bs_param1()
+
+  local  r,g,b,a = bs_fore()
+  local o =bs_opaque()*255
+  local w = bs_width()
+  local rad = bs_param2()*w  
+  
+  --This draws the spiraly shape--
+  bs_ellipse(x+rad*math.cos(thot),y+rad*math.sin(thot),w/2,w/2,1,r,g,b,o) 
+  
+  --This draws a normal pen stroke in addition to the coil if "drawcore" is checked--
+  if inner==1 then
+    bs_ellipse( x,y,w,w,1,r,g,b,o) 
+  end
+  
+  thot= thot+0.89
+  if thot>6.2831853072 then
+    thot = thot-6.2831853072 
+  end
+  --There's never going to be a situation where nothing gets drawns, so this should always return 1--
+  return 1
+end
